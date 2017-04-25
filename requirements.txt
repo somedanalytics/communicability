@@ -7,4 +7,4 @@ pyparsing==2.2.0
 scipy==0.19.0
 six==1.10.0
 Theano==0.9.0
--e git://github.com/somedanalytics/big-multiplier.git@d668dc2642692a8be5d9a807fdb49d73d1dd1ad2#egg=bigmultiplier
+-e git://github.com/somedanalytics/big-multiplier.git#egg=bigmultiplier
