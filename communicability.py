@@ -22,7 +22,7 @@ def communicability(network, nodes_list_1, nodes_list_2, walk=1):
     """
     walk = walk + 1
 
-    adj_sparse = networkx.to_scipy_sparse_matrix(network, nodelist=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], dtype=numpy.float32)
+    adj_sparse = networkx.to_scipy_sparse_matrix(network, dtype=numpy.float32)
     assert isinstance(adj_sparse, csr_matrix)
 
     nodes = network.nodes()
@@ -40,8 +40,6 @@ def communicability(network, nodes_list_1, nodes_list_2, walk=1):
         adj_sparse_ = calculate(adj_sparse_, adj_sparse)
     result_sparse = numpy.add(result_sparse, adj_sparse_ / math.factorial(walk))
 
-    k_ = adj_sparse_.toarray()
-    k = result_sparse.toarray()
     counter = result_sparse[x_, y_].sum()
 
     return counter
