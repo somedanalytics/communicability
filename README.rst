@@ -1,5 +1,5 @@
 =====================
-Big Multiplier
+Communicability
 =====================
 .. image:: https://travis-ci.org/somedanalytics/communicability.svg?branch=master
     :target: https://travis-ci.org/somedanalytics/communicability
@@ -28,3 +28,5 @@ Install
 ===============
 
 ``pip install communicability``
+
+note: image does not contail all walks
