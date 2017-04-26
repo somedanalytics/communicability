@@ -9,7 +9,7 @@ import numpy
 import math
 
 from scipy.sparse import csr_matrix
-from bigmultiplier import calculate
+from bigmultiplier import bigmultiplier
 
 
 def communicability(network, nodes_list_1, nodes_list_2, walk=1):
@@ -35,11 +35,15 @@ def communicability(network, nodes_list_1, nodes_list_2, walk=1):
     adj_sparse_ = adj_sparse.copy()
     result_sparse = csr_matrix(adj_sparse.shape, dtype=numpy.float32)
 
+    walk_points = []
     for i in range(1, walk):
         result_sparse = numpy.add(result_sparse, adj_sparse_ / math.factorial(i))
-        adj_sparse_ = calculate(adj_sparse_, adj_sparse)
+        walk_points.append(result_sparse[x_, y_].sum())
+
+        adj_sparse_ = bigmultiplier(adj_sparse_, adj_sparse)
     result_sparse = numpy.add(result_sparse, adj_sparse_ / math.factorial(walk))
+    walk_points.append(result_sparse[x_, y_].sum())
 
-    counter = result_sparse[x_, y_].sum()
+    points = result_sparse[x_, y_].sum()
 
-    return counter
+    return points, walk_points
