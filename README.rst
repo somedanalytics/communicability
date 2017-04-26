@@ -14,15 +14,19 @@ The purpose is to finding different walks for information passing.
 
 Doing matrix multiplication is a massive calculation for CPU.
 In this project we are using big-multiplier library in order to calculate adjacency matrix powers.
-You need to give the maximum lenth of the walk.
+You need to give the maximum length of the walk.
 
 Important: The longer walks are harder to compute.
 
-Calling the method
+Calling the method:
 
-``result = communicability(network, [2], [10], walk=3)``
+``result, walk_result = communicability(network, [2], [10], walk=3)``
 
 Implementation is using networkx as graph object.
+
+Change Log:
+
+1.1.x: walk_results added. It is list of points in each walk.
 
 Install
 ===============

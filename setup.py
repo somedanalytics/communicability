@@ -3,8 +3,8 @@
 from pip.req import parse_requirements
 from setuptools import setup
 
-__version__ = "1.0.0"
-__author__ = "Orcun Gumus <gumus@somed.io>"
+__version__ = "1.1.0"
+__author__ = "Orcun Gumus <gumus@somed.io>, Gokce Muge Cil, <gokce@somed.io>"
 
 long_description = open('README.rst').read()
 
