@@ -20,13 +20,14 @@ Important: The longer walks are harder to compute.
 
 Calling the method:
 
-``result, walk_result = communicability(network, [2], [10], walk=3)``
+``total_point, walk_total_points, points = communicability(network, [2], [10], walk=3)``
 
 Implementation is using networkx as graph object.
 
 Change Log:
 
-1.1.x: walk_results added. It is list of points in each walk.
+1.1.x: walk_total_points added. It is list of points in each walk.
+1.2.x: points added. It is list of all final points
 
 Install
 ===============

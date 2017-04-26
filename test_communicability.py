@@ -31,12 +31,12 @@ class TestCommunicabilityMethod(unittest.TestCase):
         # Example Graph:
         # https://snag.gy/YMubXO.jpg
 
-        point, walk_points = communicability(network, [2], [10], 3)
-        self.assertAlmostEqual(point, 6.0/24.0, delta=0.001)
-        self.assertListEqual(walk_points, [0, 0, 0, 6.0/24.0])
+        total_point, walk_total_points, points = communicability(network, [2], [10], 3)
+        self.assertAlmostEqual(total_point, 6.0/24.0, delta=0.001)
+        self.assertListEqual(walk_total_points, [0, 0, 0, 6.0/24.0])
 
-        point, walk_points = communicability(network, [2], [5], 3)
-        self.assertAlmostEqual(point, 10.0/24.0 + 1/2, delta=0.001)
+        total_point, walk_total_points, points = communicability(network, [2], [5], 3)
+        self.assertAlmostEqual(total_point, 10.0/24.0 + 1/2, delta=0.001)
 
 
 if __name__ == '__main__':
