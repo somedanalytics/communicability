@@ -15,16 +15,19 @@ from bigmultiplier import bigmultiplier
 def communicability(network, nodes_list_1, nodes_list_2, walk=1):
     """
     A function for calculate apprx communicability of two group of node on a graph
-    
+
     total_point: Total point within two list of nodes
     walk_total_points: Total points at the end of the walks
     points: Distribution of points at the end
-    
-    :param walk: 
+
+    :param walk: Total walk lenth, longer walks are harder to compute
     :param network: A giant network
     :param nodes_list_1: A group of nodes
     :param nodes_list_2: A group of nodes
     :type network: networkx.Graph
+    :type nodes_list_1: list(int)
+    :type nodes_list_2: list(int)
+
     :rtype total_point: float
     :rtype walk_total_points: list(float)
     :rtype points: list(float)
