@@ -21,11 +21,15 @@ def communicability(network, nodes_list_1, nodes_list_2, walk=1):
     points: Distribution of points at the end
 
     :param walk: Total walk lenth, longer walks are harder to compute
+    :type walk: int
+
     :param network: A giant network
-    :param nodes_list_1: A group of nodes
-    :param nodes_list_2: A group of nodes
     :type network: networkx.Graph
+
+    :param nodes_list_1: A group of nodes
     :type nodes_list_1: list(int)
+
+    :param nodes_list_2: A group of nodes
     :type nodes_list_2: list(int)
 
     :rtype total_point: float
