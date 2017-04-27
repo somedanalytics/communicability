@@ -55,12 +55,14 @@ def communicability(network, nodes_list_1, nodes_list_2, walk=1):
     for i in range(1, walk):
         result_sparse = result_sparse + adj_sparse_ / math.factorial(i)
         walk_total_points.append(result_sparse[x_, y_].sum())
+        print("Matrix multiplication...")
         adj_sparse_ = bigmultiplier(adj_sparse_, adj_sparse)
+        print("Walk completed")
     result_sparse = result_sparse + adj_sparse_ / math.factorial(walk)
     walk_total_points.append(result_sparse[x_, y_].sum())
 
     assert isinstance(result_sparse, csr_matrix)
-    assert isinstance(adj_sparse_, csr_matrix)
+    assert isinstance(adj_sparse_, lil_matrix)
 
     total_point = float(result_sparse[x_, y_].sum())
     points = [item for sublist in result_sparse[x_, y_].tolist() for item in sublist]
