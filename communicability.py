@@ -8,8 +8,17 @@ import networkx
 import numpy
 import math
 
+import time
 from scipy.sparse import csr_matrix, lil_matrix
 from bigmultiplier import bigmultiplier
+
+
+def timer(function, *args, **kwargs):
+    start = time.time()
+    kreturn = function(*args, **kwargs)
+    end = time.time(); print("{} {} seconds".format(function.__name__, end - start))
+
+    return kreturn
 
 
 def communicability(network, nodes_list_1, nodes_list_2, walk=1):
@@ -37,7 +46,6 @@ def communicability(network, nodes_list_1, nodes_list_2, walk=1):
     :rtype points: list(float)
     """
     walk = walk + 1
-
     adj_sparse = networkx.to_scipy_sparse_matrix(network, dtype=numpy.float32)
     assert isinstance(adj_sparse, csr_matrix)
 
@@ -53,18 +61,31 @@ def communicability(network, nodes_list_1, nodes_list_2, walk=1):
 
     walk_total_points = []
     for i in range(1, walk):
+        start = time.time()
         result_sparse = result_sparse + adj_sparse_ / math.factorial(i)
+        end = time.time(); print("{} {} seconds".format("Sum divide", end - start))
+
         walk_total_points.append(result_sparse[x_, y_].sum())
-        print("Matrix multiplication...")
+
+        start = time.time()
         adj_sparse_ = bigmultiplier(adj_sparse_, adj_sparse)
-        print("Walk completed")
+        end = time.time(); print("{} {} seconds".format("bigmultiplier", end - start))
+
+    start = time.time()
     result_sparse = result_sparse + adj_sparse_ / math.factorial(walk)
+    end = time.time(); print("{} {} seconds".format("Sum divide", end - start))
+
     walk_total_points.append(result_sparse[x_, y_].sum())
 
     assert isinstance(result_sparse, csr_matrix)
     assert isinstance(adj_sparse_, csr_matrix)
 
+    start = time.time()
     total_point = float(result_sparse[x_, y_].sum())
+    end = time.time(); print("{} {} seconds".format("total point", end - start))
+
+    start = time.time()
     points = [item for sublist in result_sparse[x_, y_].tolist() for item in sublist]
+    end = time.time();print("{} {} seconds".format("points dist", end - start))
 
     return total_point, walk_total_points, points
