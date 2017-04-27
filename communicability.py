@@ -49,7 +49,7 @@ def communicability(network, nodes_list_1, nodes_list_2, walk=1):
             y_.append(nodes.index(y))
 
     adj_sparse_ = adj_sparse.copy()
-    result_sparse = lil_matrix(adj_sparse.shape, dtype=numpy.float32)
+    result_sparse = csr_matrix(adj_sparse.shape, dtype=numpy.float32)
 
     walk_total_points = []
     for i in range(1, walk):
@@ -62,7 +62,7 @@ def communicability(network, nodes_list_1, nodes_list_2, walk=1):
     walk_total_points.append(result_sparse[x_, y_].sum())
 
     assert isinstance(result_sparse, csr_matrix)
-    assert isinstance(adj_sparse_, lil_matrix)
+    assert isinstance(adj_sparse_, csr_matrix)
 
     total_point = float(result_sparse[x_, y_].sum())
     points = [item for sublist in result_sparse[x_, y_].tolist() for item in sublist]
