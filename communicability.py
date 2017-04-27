@@ -49,13 +49,12 @@ def communicability(network, nodes_list_1, nodes_list_2, walk=1):
             y_.append(nodes.index(y))
 
     adj_sparse_ = adj_sparse.copy()
-    result_sparse = csr_matrix(adj_sparse.shape, dtype=numpy.float32)
+    result_sparse = lil_matrix(adj_sparse.shape, dtype=numpy.float32)
 
     walk_total_points = []
     for i in range(1, walk):
         result_sparse = result_sparse + adj_sparse_ / math.factorial(i)
         walk_total_points.append(result_sparse[x_, y_].sum())
-
         adj_sparse_ = bigmultiplier(adj_sparse_, adj_sparse)
     result_sparse = result_sparse + adj_sparse_ / math.factorial(walk)
     walk_total_points.append(result_sparse[x_, y_].sum())
