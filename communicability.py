@@ -46,7 +46,7 @@ def communicability(network, nodes_list_1, nodes_list_2, walk=1):
     :rtype points: list(float)
     """
     walk = walk + 1
-    network = fastremover.fastremover(network, 2)
+    network = fastremover.fastremover(network, 1)
     adj_sparse = networkx.to_scipy_sparse_matrix(network, dtype=numpy.float32)
     assert isinstance(adj_sparse, csr_matrix)
 
