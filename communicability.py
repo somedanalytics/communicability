@@ -7,7 +7,7 @@
 import networkx
 import numpy
 import math
-
+import fastremover
 import time
 from scipy.sparse import csr_matrix, lil_matrix
 from bigmultiplier import bigmultiplier
@@ -46,6 +46,7 @@ def communicability(network, nodes_list_1, nodes_list_2, walk=1):
     :rtype points: list(float)
     """
     walk = walk + 1
+    network = fastremover.fastremover(network, 2)
     adj_sparse = networkx.to_scipy_sparse_matrix(network, dtype=numpy.float32)
     assert isinstance(adj_sparse, csr_matrix)
 
