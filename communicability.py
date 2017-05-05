@@ -55,13 +55,13 @@ def communicability(network, nodes_list_1, nodes_list_2, walk=1):
     for x in nodes_list_1:
         for y in nodes_list_2:
             try:
-                x_.append(nodes.index(x))
+                xx = nodes.index(x)
+                yy = nodes.index(y)
             except ValueError as e:
                 pass
-            try:
-                y_.append(nodes.index(y))
-            except ValueError as e:
-                pass
+            else:
+                x_.append(xx)
+                y_.append(yy)
 
     adj_sparse_ = adj_sparse.copy()
     result_sparse = csr_matrix(adj_sparse.shape, dtype=numpy.float32)
