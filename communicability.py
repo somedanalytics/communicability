@@ -46,8 +46,11 @@ def communicability(network, nodes_list_1, nodes_list_2, walk=1):
     :rtype points: list(float)
     """
     walk = walk + 1
+
     network = fastremover.fastremover(network, 1)
     adj_sparse = networkx.to_scipy_sparse_matrix(network, dtype=numpy.float32)
+    print("Sparse matrix created")
+
     assert isinstance(adj_sparse, csr_matrix)
 
     nodes = network.nodes()
@@ -62,9 +65,11 @@ def communicability(network, nodes_list_1, nodes_list_2, walk=1):
             else:
                 x_.append(xx)
                 y_.append(yy)
+    print("Nodes created")
 
     adj_sparse_ = adj_sparse.copy()
     result_sparse = csr_matrix(adj_sparse.shape, dtype=numpy.float32)
+    print("Copied")
 
     walk_total_points = []
     for i in range(1, walk):
@@ -77,6 +82,7 @@ def communicability(network, nodes_list_1, nodes_list_2, walk=1):
         start = time.time()
         adj_sparse_ = bigmultiplier(adj_sparse_, adj_sparse)
         end = time.time(); print("{} {} seconds".format("bigmultiplier", end - start))
+    print("Walk completed")
 
     start = time.time()
     result_sparse = result_sparse + adj_sparse_ / math.factorial(walk)
