@@ -48,9 +48,11 @@ def communicability(network, nodes_list_1, nodes_list_2, walk=1):
     walk = walk + 1
 
     network = fastremover.fastremover(network, 1)
-    print("SHAPE", network.shape)
+    print("SHAPE1:", len(network.nodes()))
     
     adj_sparse = networkx.to_scipy_sparse_matrix(network, dtype=numpy.float32)
+    print("SHAPE2:", adj_sparse.shape)
+    
     print("Sparse matrix created")
 
     assert isinstance(adj_sparse, csr_matrix)
