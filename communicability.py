@@ -48,6 +48,8 @@ def communicability(network, nodes_list_1, nodes_list_2, walk=1):
     walk = walk + 1
 
     network = fastremover.fastremover(network, 1)
+    print("SHAPE", network.shape)
+    
     adj_sparse = networkx.to_scipy_sparse_matrix(network, dtype=numpy.float32)
     print("Sparse matrix created")
 
