@@ -47,7 +47,7 @@ def communicability(network, nodes_list_1, nodes_list_2, walk=1):
     """
     walk = walk + 1
 
-    network = fastremover.fastremover(network, 1)
+    network = fastremover.fastremover(network, 1, WIDTH=200)
     print("SHAPE1:", len(network.nodes()))
     
     adj_sparse = networkx.to_scipy_sparse_matrix(network, dtype=numpy.float32)
